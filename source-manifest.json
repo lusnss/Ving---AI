@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-03T11:10:41+07:00",
+  "source_commit": "89304520d5afc641b62ba3316414e3ef308728f6",
+  "source_site_version": "v221 (confirmed by parent agent)",
+  "archive": "ving-warroom-code-recovery.zip",
+  "archive_sha256": "7a1cfc7404b263934e2a8410389cad7ff3de861ae59e532e020f8c0e662803db",
+  "archive_bytes": 9336031,
+  "source_file_count": 423,
+  "source_bytes": 18279973,
+  "full_file_checksums": "source-checksums.sha256",
+  "audit_report": "source-audit.json",
+  "changes_from_production": [
+    ".env.example",
+    "automation/ONLINE-RUNBOOK.md",
+    "com.ving.warroom-sync.plist",
+    ".gitignore"
+  ],
+  "added_files": [
+    "RESTORE.md"
+  ],
+  "verification": {
+    "build": "passed; 216 assets",
+    "schema_restore_in_memory": "passed; 17 application tables + preview migration tracking table",
+    "historical_seed_scan": {
+      "rows": 4,
+      "email_strings": 0,
+      "phone_strings": 0,
+      "recognized_personal_field_keys": 0
+    },
+    "live_data_restored": false,
+    "deployment_performed": false,
+    "archive_fresh_extraction": "passed; 423 file hashes; isolated build and 17-table schema restore"
+  },
+  "archive_integrity": "CRC and every source SHA-256 verified",
+  "scope": "Code, schema, UI assets and bundled fallback business data; excludes Git history, runtime state, secrets, live D1 export and live R2 objects."
+}

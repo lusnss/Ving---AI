@@ -1,0 +1,88 @@
+{
+  "source_commit": "89304520d5afc641b62ba3316414e3ef308728f6",
+  "source_folder": "warroom-brand-guide",
+  "destination": "source",
+  "tracked_files_copied": 422,
+  "changed_production_files": [
+    {
+      "path": ".env.example",
+      "reason": [
+        "Blank all example environment values, including account identifiers."
+      ]
+    },
+    {
+      "path": "automation/ONLINE-RUNBOOK.md",
+      "reason": [
+        "Remove local account path or email from portable code/documents."
+      ]
+    },
+    {
+      "path": "com.ving.warroom-sync.plist",
+      "reason": [
+        "Remove local account path or email from portable code/documents."
+      ]
+    },
+    {
+      "path": ".gitignore",
+      "reason": [
+        "Expand ignores for secrets, runtime databases, generated files and raw backup archives."
+      ]
+    }
+  ],
+  "added_files": [
+    "RESTORE.md"
+  ],
+  "structured_data_checks": [
+    {
+      "path": "branch-profit.snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "event-predict.snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "inventory-initial.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "out/assets/daily-comparison-data.mjs",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "out/assets/event-compensation-data.mjs",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "out/snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "pivot-inventory.snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "product-cost.snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    },
+    {
+      "path": "profit-loss.snapshot.json",
+      "known_personal_fields_or_patterns_changed": false
+    }
+  ],
+  "excludes_git_history_and_untracked_files": true,
+  "does_not_deploy_or_restore_live_data": true,
+  "checked_at": "2026-10-03T11:10:41+07:00",
+  "verification": {
+    "build": "passed; 216 assets",
+    "schema_restore_in_memory": "passed; 17 application tables + preview migration tracking table",
+    "historical_seed_scan": {
+      "rows": 4,
+      "email_strings": 0,
+      "phone_strings": 0,
+      "recognized_personal_field_keys": 0
+    },
+    "live_data_restored": false,
+    "deployment_performed": false
+  }
+}
