@@ -1,0 +1,38 @@
+/* Shared Summary palette for every Event view. */
+body.summary-theme.event-theme{background:var(--sum-bg);color:var(--sum-text);color-scheme:dark}
+.event-theme .nav-menu>summary[aria-current=page]{color:#fde412;background:#242424;border-color:#242414;box-shadow:none}
+.event-theme .event-eyebrow,.event-theme .proposal-eyebrow{color:var(--sum-gold)!important}
+.event-theme .event-kpis article,.event-theme .proposal-kpi{background:linear-gradient(130deg,#202020,#181818)}
+.event-theme .event-kpis .event-sales-kpi,.event-theme .proposal-kpi-total{background:linear-gradient(120deg,#fde412,#fde412);border-color:#fde412;color:#1b1b1b}
+.event-theme .event-sales-kpi>span,.event-theme .event-sales-kpi>small,.event-theme .proposal-kpi-total h2,.event-theme .proposal-kpi-total p,.event-theme .proposal-kpi-total strong small,.event-theme .proposal-kpi-total .proposal-eyebrow{color:#242414!important}
+.event-theme .event-year-control select,.event-theme .event-month-control select,.event-theme .proposal-column-picker summary{background:#1f1f1f;border-color:#444444;color:#ffffff}
+.event-theme .event-chart-switch,.event-theme .event-tag,.event-theme .event-rank,.event-theme .proposal-table-toolbar h2>span,.event-theme .proposal-column-picker [data-column-count]{background:#262626}
+.event-theme .event-chart-switch button[aria-pressed=true],.event-theme .event-ranking li:first-child .event-rank{background:#fde412;color:#1b1b1b}
+.event-theme .event-chart-point rect,.event-theme .event-chart-legend i{fill:#fde412;background:#fde412}
+.event-theme .event-chart-point:hover rect,.event-theme .event-chart-point:focus rect{fill:#fde412}
+.event-theme .event-chart-point rect.event-chart-partial,.event-theme .event-chart-legend i.partial{fill:#808080;background:#808080}
+.event-theme .event-chart-zero{stroke:#fde412}
+.event-theme .event-chart-month,.event-theme .event-chart-grid text{fill:#b0b0b0}
+.event-theme .event-rank-track,.event-theme .proposal-meter{background:#303030}
+.event-theme .event-rank-track i{background:linear-gradient(90deg,#fde412,#fde412)}
+.event-theme .event-rank-content>div>span{color:#fde412}
+.event-theme .event-premium-page th,.event-theme .proposal-table th{background:#212121;color:#cccccc}
+.event-theme .event-premium-page .table-wrap,.event-theme .event-premium-page table,.event-theme .proposal-table{background:var(--sum-panel);color:#dedede}
+.event-theme .event-premium-page td,.event-theme .proposal-table td{background:var(--sum-panel);color:#dedede;border-bottom-color:#363636}
+.event-theme .event-premium-page tbody tr:nth-child(even) td,.event-theme .proposal-table tbody tr:nth-child(even) td{background:#1e1e1e}
+.event-theme .event-premium-page tbody tr:hover td,.event-theme .proposal-table tbody tr:hover td,.event-theme .proposal-column-options label:hover{background:#262626}
+.event-theme .event-reconciliation,.event-theme .event-data-warning{background:#202020;border-color:#77653f;color:#fde412!important}
+.event-theme .event-reconciliation small{color:#fde412}
+.event-theme .proposal-column-panel{background:#202020;border-color:#434343;box-shadow:0 18px 60px #00000066}
+.event-theme .proposal-column-picker summary:hover,.event-theme .proposal-column-picker[open] summary{background:#242424;border-color:#77653f}
+.event-theme .proposal-column-actions button{background:#242424;color:#fde412}
+.event-theme .proposal-column-options input{accent-color:#fde412}
+.event-theme .proposal-status.approved,.event-theme .proposal-kpi-icon.approved,.event-theme .proposal-connection{background:#262626;color:#bbd5d5;border-color:#434343}
+.event-theme .proposal-status.rejected,.event-theme .proposal-kpi-icon.rejected{background:#2b2b2b;color:#ebb9c5;border-color:#38242a}
+.event-theme .proposal-status.pending,.event-theme .proposal-kpi-icon.pending{background:#252525;color:#fde412;border-color:#242414}
+.event-theme .proposal-table td[data-column=profit]{color:#bbd5d5}
+.event-theme .proposal-meter span,.event-theme .proposal-connection i{background:#bbd5d5}
+.event-theme .proposal-connection.offline i{background:#fde412}
+.event-theme .proposal-orbit{border-color:#24241418;box-shadow:0 0 0 22px #24241408,0 0 0 45px #24241408}
+.event-theme .event-premium-page :focus-visible,.event-theme .proposal-page :focus-visible{outline-color:#fde412}
+.event-theme .event-premium-page .card,.event-theme .proposal-card,.event-theme .proposal-financials{color:var(--sum-text)}

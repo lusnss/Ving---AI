@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {stockExcelWorkbook,stockExcelSheets} from './out/assets/stock-excel.mjs';
+import {filterStockItems} from './out/assets/stock-grid.mjs';
+import {stockBranchType,branchesForStockType,summarizeStock} from './out/assets/stock-filters.mjs';
+const rows=Array.from({length:35},(_,i)=>({sku:`VING-Vari-Black#${i+1}`,barcode:'00001234',normal:i+1,hold:2,total:i+3,branchCount:1}));rows.push({sku:'VING-Other_BB-Blue#40',normal:999,hold:0,total:999,branchCount:1});
+const filtered=filterStockItems(rows,{query:'va_ri'});assert.equal(filtered.length,35);assert.deepEqual(summarizeStock(filtered),{normal:630,hold:70,total:700,skus:35});assert.equal(summarizeStock(filterStockItems(rows,{grade:'grade_b_plus'})).total,999);
+const options={metric:'total',query:'Vari',branch:'สาขาทดสอบ',branchType:'CDS'};
+const sheets=stockExcelSheets(filtered,[],options);assert.deepEqual(sheets.map(s=>s.name),['สรุป','ตารางไซซ์','SKU']);assert.equal(sheets[1].widths.length,37);assert.equal(sheets[1].rows.find(r=>r.kind==='total').values.at(-1),700);assert.equal(sheets[2].rows.length,39);assert.equal(sheets[0].rows.find(r=>r.values[0]==='ประเภทสาขา').values[1],'CDS');
+const bytes=stockExcelWorkbook(filtered,[],options),text=new TextDecoder().decode(bytes);assert.equal(bytes[0],80);assert.equal(bytes[1],75);assert.match(text,/AK7/);assert.match(text,/00001234/);assert.doesNotMatch(text,/<f[ >]/);assert.match(text,/sheet3.xml/);assert.match(text,/mergeCells/);assert.match(text,/autoFilter ref="A4:J39"/);
+const branches=['STAND ALONE00','STAND ALONE14','RBS01','CDS20','BR001','THE MALL01'].map(id=>({id}));assert.deepEqual(branches.map(stockBranchType),['standalone','standalone','rbs','cds','other','other']);assert.equal(branchesForStockType(branches,'all').length,6);assert.equal(branchesForStockType(branches,'standalone').length,2);assert.equal(branchesForStockType(branches,'cds')[0].id,'CDS20');
+console.log('Passed: grade/model KPI sums, branch types, per-model Excel grid, typed totals/barcodes, filters, frozen panes, 37 columns through AK.');

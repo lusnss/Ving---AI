@@ -1,0 +1,20 @@
+html[data-iphone-push-gated] body>:not(#iphone-push-gate){display:none!important}
+html[data-iphone-push-gated],html[data-iphone-push-gated] body{background:#181818!important;min-height:100dvh}
+#iphone-push-gate{box-sizing:border-box;width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:28px 24px;border:1px solid #303030;border-radius:18px;background:#222222;color:#ffffff;box-shadow:0 24px 80px #00000088;font:16px/1.6 system-ui;overflow:auto}
+#iphone-push-gate::backdrop{background:#181818}
+#iphone-push-gate .iphone-push-brand{font-size:12px;font-weight:700;letter-spacing:.14em;color:#fde412}
+#iphone-push-gate h1{font-size:24px;line-height:1.4;margin:12px 0}
+#iphone-push-gate p{font-size:16px;line-height:1.65;overflow-wrap:anywhere}
+#iphone-push-gate .iphone-push-intro{color:#bbd5d5;margin:0 0 22px}
+#iphone-push-gate .mobile-push{padding:18px 0;border-top:1px solid #ffffff1c}
+#iphone-push-gate .mobile-push h3{font-size:16px;margin:0 0 8px}
+#iphone-push-gate .mobile-push p{margin:6px 0 14px}
+#iphone-push-gate .mobile-push-actions{display:flex;flex-wrap:wrap;gap:10px}
+#iphone-push-gate button{width:100%;min-height:48px;padding:12px 14px;border:1px solid #fde412;border-radius:9px;font:600 16px/1.4 system-ui;background:#fde412;color:#202020;cursor:pointer}
+#iphone-push-gate button:disabled{opacity:.55;cursor:wait}
+#iphone-push-gate button:focus-visible{outline:3px solid #ffffff;outline-offset:3px}
+#iphone-push-gate .mobile-push-feedback{color:#fde412;font-size:14px}
+#iphone-push-gate .mobile-push-feedback:empty{display:none}
+#iphone-push-gate .iphone-push-footnote{font-size:14px;color:#bbd5d5;margin:8px 0 18px}
+#iphone-push-gate .iphone-push-signout{border-color:#303030;color:#d1d1d1;background:transparent;font-size:14px}
+@media(max-width:360px){#iphone-push-gate{padding:24px 18px}#iphone-push-gate h1{font-size:22px}}

@@ -1,0 +1,18 @@
+import fs from 'node:fs/promises';
+import {forecast} from '../out/assets/event-predict-model.mjs';
+const createdAt='2026-09-22T03:30:00.000Z';
+const events=[
+ {id:'f4dd492c-e89b-4970-b4c8-951eb58d5282',place:'อิมแพ็ค เมืองทองธานี',name:'บ้านและสวน Living Festival',startDate:'2026-10-23',endDate:'2026-11-01',days:10,pcCount:2,shipping:4000,sales:900000,start:'10:00',end:'20:00',series:'baan-suan',note:'ประมาณการยอดขาย 900,000 บาท (90,000 บาท/วัน) อ้างอิง snapshot งานบ้านและสวน Midyear ไบเทค 31/07–09/08/2569: 929,210 บาท / 10 วัน ปรับลงประมาณ 3.1% เพราะเป็นคนละสถานที่และรอบงาน ไม่ใช่ยอดขายยืนยัน'},
+ {id:'f879fe44-c30f-4f9c-87bf-25a7941dc505',place:'สามย่านมิตรทาวน์ฮอลล์',name:'LHB SME FAST LANE GROWTH SUMMIT 2026',startDate:'2026-10-28',endDate:'2026-10-28',days:1,pcCount:1,shipping:3000,sales:10000,start:'09:00',end:'18:00',series:'',note:'ประมาณการเพื่อวางแผน 10,000 บาท/วัน สมมติ 10 ธุรกรรม × ยอดเฉลี่ย 1,000 บาท/ธุรกรรม ไม่ใช่ราคาสินค้าหรือยอดขายยืนยัน ยังไม่มีประวัติงาน LHB รูปแบบเดียวกัน; งาน Move Together Day ที่สามย่านใน snapshot ทำได้ 1,180 บาท จึงมีความไม่แน่นอนสูงและไม่ใช้เป็น Baseline ของงานนี้'}
+];
+const records=events.map(v=>{
+ const input={mode:'manual',salesMode:'',channel:'direct',days:v.days,cogs:'',rent:'',gp:'',pc:'',shipping:v.shipping,other:'',targetMode:'manual',target:'',expectedSales:v.sales,downside:20,upside:20,proposalDate:'2026-09-22',confirmBy:'',area:'',pcCount:v.pcCount,pcCostMode:'person',baselineMonth:'all',eventSeries:v.series,eventLocation:v.series?v.place:'',pcStartTime:v.start,pcEndTime:v.end,pcHoursPerDay:Number(v.end.slice(0,2))-Number(v.start.slice(0,2)),proposalScenario:'base',floor:'',eventMonth:'2026-10',eventTypes:[]};
+ const calculation=forecast([],input);calculation.proposalScenario='base';calculation.proposed=calculation.base;
+ return {id:v.id,createdAt,source:'web',forecastPlace:v.series?'บ้านและสวน':v.place,place:v.place,name:v.name,eventLocation:input.eventLocation,pcStartTime:v.start,pcEndTime:v.end,pcHoursPerDay:input.pcHoursPerDay,proposalScenario:'base',dates:v.startDate+' ถึง '+v.endDate,startDate:v.startDate,endDate:v.endDate,proposalDate:input.proposalDate,confirmBy:'',month:'2026-10',floor:'',eventTypes:[],days:String(v.days),area:'',pc:String(v.pcCount),sales:String(v.sales),profit:'',margin:'',roi:'',target:'',trade:'รออนุมัติ',ceo:'รออนุมัติ',input,calculation,planningNotes:[v.note,`เวลา PC ${v.start}–${v.end} เป็นเวลาคาดการณ์เพื่อวางแผน ยังไม่ยืนยันกับผู้จัดและยังไม่หักเวลาพัก`, 'ค่าเช่าเว้นว่างตามคำขอ; ค่าแรง PC ต้นทุนสินค้า ค่าใช้จ่ายอื่น ขนาดพื้นที่ และวันสุดท้ายที่ต้องคอนเฟิร์ม [ต้องถามเจ้าของ] ยังไม่คำนวณกำไร ROI หรือจุดคุ้มทุน'],reference:{signature:'manual',label:'ประมาณการเพื่อวางแผนตามคำขอ 22/09/2569',rows:[]}};
+});
+const quote=v=>"'"+String(v).replaceAll("'","''")+"'";
+const sql=records.map(r=>`INSERT INTO event_requests (id, created_at, payload) SELECT ${quote(r.id)}, ${quote(r.createdAt)}, ${quote(JSON.stringify(r))} WHERE NOT EXISTS (SELECT 1 FROM event_requests WHERE json_extract(payload, '$.name') = ${quote(r.name)} AND json_extract(payload, '$.startDate') = ${quote(r.startDate)}) ON CONFLICT(id) DO NOTHING;`).join('\n--> statement-breakpoint\n');
+await fs.writeFile('drizzle/0004_october_event_proposals.sql','-- data-only-seed\n'+sql+'\n');
+const journal=JSON.parse(await fs.readFile('drizzle/meta/_journal.json','utf8'));
+if(!journal.entries.some(e=>e.tag==='0004_october_event_proposals'))journal.entries.push({idx:4,version:'6',when:1790047800000,tag:'0004_october_event_proposals',breakpoints:true});
+await fs.writeFile('drizzle/meta/_journal.json',JSON.stringify(journal,null,2)+'\n');

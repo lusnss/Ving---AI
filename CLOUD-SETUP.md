@@ -1,6 +1,6 @@
 # แก้เว็บ VING บนคลาวด์
 
-สถานะวันที่ 3 ตุลาคม 2026: ต้นฉบับเว็บอยู่ใน Sites และนำข้อมูลเดิมขึ้นคลาวด์เมื่อเวอร์ชัน 225; ก่อนแก้ไขให้เปิดเวอร์ชันล่าสุดเสมอ ส่วน GitHub นี้เก็บ ZIP สำรองและเอกสาร ยังไม่มีโฟลเดอร์โค้ด `project/` ที่นำเข้าแล้ว และยังไม่ได้ตั้งค่า Codex Cloud environment จาก repository นี้
+สถานะวันที่ 3 ตุลาคม 2026: ต้นฉบับเว็บอยู่ใน Sites และนำข้อมูลเดิมขึ้นคลาวด์เมื่อเวอร์ชัน 225; ก่อนแก้ไขให้เปิดเวอร์ชันล่าสุดเสมอ ส่วน GitHub นี้มีโค้ด `project/` จาก Site v228 commit `9232a540dda1cf8e432ddc8287440aa122cba114` ครบ 434 ไฟล์ พร้อม ZIP สำรองและเอกสารเดิม และยังไม่ได้ตั้งค่า Codex Cloud environment จาก repository นี้
 
 ## วิธีแก้เว็บครั้งต่อไป
 
@@ -26,8 +26,8 @@
 
 ## บทบาทของ GitHub
 
-การแก้ Site ผ่านเว็บข้างต้นไม่ต้องติดตั้ง GitHub Actions bootstrap ชุด ZIP ใน repository นี้เป็นสำเนาย้อนหลังตาม [README.md](README.md) ส่วนต้นฉบับปัจจุบันใช้จาก Sites
+การแก้ Site ผ่านเว็บข้างต้นไม่ต้องติดตั้ง GitHub Actions bootstrap โฟลเดอร์ `project/` เป็น source snapshot v228 ที่ตรวจตรงกับ Sites ตาม [GITHUB-SOURCE-IMPORT.json](GITHUB-SOURCE-IMPORT.json) ชุด ZIP เดิมใน repository เป็นสำเนาย้อนหลังตาม [README.md](README.md) ส่วนต้นฉบับสำหรับแก้เว็บต่อใช้เวอร์ชันล่าสุดจาก Sites
 
-ถ้าจะพัฒนาด้วย Codex Cloud ผ่าน GitHub ภายหลัง ต้องนำต้นฉบับ Site ล่าสุดเข้าเป็นไฟล์โค้ดจริง เชื่อมสิทธิ์ repository และตั้งค่า cloud environment ก่อน การอัปโหลด ZIP หรือ push GitHub เพียงอย่างเดียวยังไม่เผยแพร่ VING Site
+ถ้าจะพัฒนาด้วย Codex Cloud ผ่าน GitHub ภายหลัง มีไฟล์โค้ดจริงใน `project/` และยืนยัน GitHub connection ของบัญชีเจ้าของแล้ว แต่ยังต้องเทียบกับ Site ล่าสุดและตั้งค่า cloud environment ก่อน การอัปโหลด ZIP หรือ push GitHub เพียงอย่างเดียวยังไม่เผยแพร่ VING Site
 
 เก็บรหัสเชื่อมต่อใน secret settings ของบริการ เอกสารนี้ไม่เปลี่ยนสิทธิ์ แชร์ข้อมูล หรือตั้งค่า workflow ใดโดยอัตโนมัติ

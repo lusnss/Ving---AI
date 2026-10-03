@@ -1,6 +1,6 @@
 # VING — สำรองออนไลน์และทางเข้าแก้เว็บ
 
-GitHub Private นี้เก็บชุดสำรองและเอกสารการทำงาน ต้นฉบับเว็บที่ใช้ต่ออยู่ใน **VING Site เดิมบน Sites** เปิด [Sites ใน ChatGPT](https://chatgpt.com/sites) แล้วเลือก Site → **Edit** เพื่อเริ่มแก้ผ่านเว็บ ตาม [official OpenAI documentation](https://learn.chatgpt.com/docs/sites)
+GitHub นี้เก็บชุดสำรองและเอกสารการทำงาน ต้นฉบับเว็บที่ใช้ต่ออยู่ใน **VING Site เดิมบน Sites** เปิด [Sites ใน ChatGPT](https://chatgpt.com/sites) แล้วเลือก Site → **Edit** เพื่อเริ่มแก้ผ่านเว็บ ตาม [official OpenAI documentation](https://learn.chatgpt.com/docs/sites)
 
 ดูขั้นตอนและข้อความพร้อมใช้ใน [CLOUD-SETUP.md](CLOUD-SETUP.md)
 
@@ -11,9 +11,15 @@ GitHub Private นี้เก็บชุดสำรองและเอก�
 | เวอร์ชัน Site ที่นำข้อมูลเดิมขึ้นคลาวด์ | เวอร์ชัน 225 — commit `85cee02b16d2fc786168d6b28b148399d32a8a75` |
 | พื้นที่ข้อมูลเว็บ | ใช้ D1 และ R2 ของ Site เดิม |
 | ชุดข้อมูล workspace ที่ย้ายเพิ่ม | ตรวจอ่านคืนตรงกัน 16 ตาราง รวม 14 รายการ; จำนวนนี้เฉพาะชุดที่ย้ายเพิ่ม |
-| GitHub | มี ZIP สำรองและเอกสาร; ยังไม่มี source tree `project/` ที่นำเข้าแล้ว |
+| GitHub | นำเข้าโค้ดที่แก้ไขได้ใน `project/` จาก Site v228 commit `9232a540dda1cf8e432ddc8287440aa122cba114` ครบ 434 ไฟล์; คง ZIP และประวัติเดิม |
 | GitHub Actions bootstrap | ยังไม่ได้ติดตั้งหรือรัน; ไม่จำเป็นสำหรับการแก้ผ่าน Sites บนเว็บ |
 | Codex Cloud จาก repository นี้ | ยังไม่ได้ตั้งค่าและทดสอบ environment |
+
+## โค้ดที่แก้ไขได้
+
+[project/](project/) เป็นสำเนาตรงของ source tree ของ Site v228 ที่เผยแพร่แล้ว ตรวจไฟล์และ mode ด้วย Git tree SHA `e95a5868dfc17e0781103ecda17a523d61f18887` และตรวจ SHA-256 รายไฟล์ตาม [GITHUB-SOURCE-IMPORT.json](GITHUB-SOURCE-IMPORT.json) ก่อนแก้เว็บครั้งต่อไป ให้เทียบกับต้นฉบับ Site ล่าสุดอีกครั้ง
+
+การนำเข้านี้ไม่ตั้งค่า Codex Cloud environment และไม่เผยแพร่ Site โดยอัตโนมัติ ชุดสำรอง workspace สอง ZIP ที่กู้คืนได้ 27,673 meaningful paths ยังรอแนบใน Release ฉบับร่าง `workspace-backup-2026-10-03` จึงยังไม่นับว่าสำรองชุดนั้นขึ้น GitHub สำเร็จ
 
 ## ที่มาของชุดโค้ดสำรอง
 

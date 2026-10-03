@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>com.ving.warroom-sync</string>
+<key>ProgramArguments</key><array><string>/Users/bright/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node</string><string>/Users/bright/Documents/VIng - AI /warroom-public/sync.mjs</string></array>
+<key>WorkingDirectory</key><string>/Users/bright/Documents/VIng - AI /warroom-public</string>
+<key>RunAtLoad</key><true/><key>KeepAlive</key><true/><key>ThrottleInterval</key><integer>30</integer>
+<key>StandardOutPath</key><string>/Users/bright/Documents/VIng - AI /warroom-public/sync.log</string>
+<key>StandardErrorPath</key><string>/Users/bright/Documents/VIng - AI /warroom-public/sync.log</string>
+</dict></plist>

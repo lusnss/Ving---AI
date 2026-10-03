@@ -1,0 +1,42 @@
+/* VING brand guide. Color and typography only; existing component geometry stays in its source stylesheet. */
+@font-face{font-family:'IBM Plex Sans Thai Looped';font-style:normal;font-weight:400;font-display:swap;src:url('./fonts/IBMPlexSansThaiLooped-Regular.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Sans Thai Looped';font-style:normal;font-weight:500;font-display:swap;src:url('./fonts/IBMPlexSansThaiLooped-Medium.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Sans Thai Looped';font-style:normal;font-weight:600;font-display:swap;src:url('./fonts/IBMPlexSansThaiLooped-SemiBold.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Sans Thai Looped';font-style:normal;font-weight:700;font-display:swap;src:url('./fonts/IBMPlexSansThaiLooped-Bold.woff2') format('woff2')}
+:root{--ving-yellow:#fde412;--ving-blue:#6ea8cc;--ving-light-blue:#bbd5d5;--ving-pink:#ebb9c5;--ving-orange:#ef7023;--ving-olive:#77653f;--ving-moss:#245143}
+body,body :is(button,input,select,textarea,h1,h2,h3,h4,p,a,span,strong,small,label,summary,div,section,article,th,td,dt,dd,svg text){font-family:'IBM Plex Sans Thai Looped',sans-serif!important}
+/* Original supplied artwork is displayed as a sprite, with its proportions intact. */
+.ving-wordmark{display:inline-block;width:96px;aspect-ratio:718/161;background-image:url('/assets/ving-brand-source.png');background-repeat:no-repeat;background-size:566.2952646% 3571.4285714%;background-position:6.8100358% 73.0524244%;vertical-align:middle;flex-shrink:0;mix-blend-mode:multiply}
+.ving-wordmark-light{filter:invert(1);mix-blend-mode:screen}
+body .access-bar{position:relative}
+.access-brand{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:76px;line-height:0}
+body .login h1{color:#000}
+.login .ving-wordmark{width:132px}
+body .login button{background:#fde412;color:#000}
+body .login button:hover{background:#000;color:#fde412}
+body .login input:focus-visible{outline:2px solid #000;outline-offset:2px;border-color:#fde412}
+body .app-header{background:#000;color:#fff;border-bottom-color:#fde41255}
+body .app-header [aria-current=page],body .app-header .nav-menu>summary[aria-current=page]{background:#fde412;color:#000;border-color:#fde412;box-shadow:none}
+body .app-header [aria-current=page]:after{background:#000}
+body .app-header .nav-dropdown a:hover{background:#fde412;color:#000}
+body .app-header :is(a,summary,button):focus-visible{outline-color:#fde412}
+body .app-header #app-notifications{color:#fde412}
+body .app-header #app-notifications[data-unread=true] span{background:#fde412;color:#000}
+body .sum-brand-mark,body .qa-mark,body .qa-avatar,body .pm-edition-mark{position:relative;font-size:0!important;letter-spacing:0;color:transparent;border-color:#fde41280;background:#000}
+body :is(.sum-brand-mark,.qa-mark,.qa-avatar,.pm-edition-mark)::after{content:'';position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%);aspect-ratio:718/161;background:url('/assets/ving-brand-source.png') 6.8100358% 73.0524244%/566.2952646% 3571.4285714% no-repeat;filter:invert(1);mix-blend-mode:screen}
+/* Retain readable dark text on the yellow total panels and selected controls. */
+body .event-theme .event-sales-kpi,body .event-theme .proposal-kpi-total{color:#000}
+body .event-sales-kpi :is(span,small,strong),body .proposal-kpi-total :is(h2,p,strong,small){color:#000!important}
+@media(max-width:600px){.access-brand{left:16px;width:52px}}
+@media(max-width:370px){.access-brand{width:38px}}
+@media print{.access-brand{display:none}body .sum-brand-mark,body .qa-mark,body .qa-avatar,body .pm-edition-mark{background:#fff}body :is(.sum-brand-mark,.qa-mark,.qa-avatar,.pm-edition-mark)::after{filter:none;mix-blend-mode:multiply}}
+
+/* Empty sales state inherits the dark workspace ink. Keep its existing card geometry. */
+body .daily-sales-page-head~.card.section-gap:not(.daily-sales-table-card){background:#181818;color:#fff;border-color:#303030}
+
+body .inv-refresh{background:#fde412;color:#000;border-color:#fde412!important}
+body .inv-refresh:hover{background:#000;color:#fde412;border-color:#000!important}
+body .inventory-page .inv-eyebrow{color:#000}
+body .inventory-page .inv-sources button[aria-pressed=true]{background:#fde412;color:#000;border-color:#fde412}
+/* Fit the brand font within the existing single-row desktop navigation. */
+@media(min-width:1151px) and (max-width:1399px){body .app-header .notebook-tabs>a,body .app-header .nav-menu>summary{font-size:12px;padding-inline:4px}body .app-header .notebook-tabs{gap:3px}}

@@ -1,0 +1,20 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import {applyEventSales} from './events-data.mjs';
+const p=new URL('./out/',import.meta.url);
+const snapshot=applyEventSales(JSON.parse(await fs.readFile(new URL('snapshot.json',p))));
+globalThis.location={origin:'https://example.invalid'};
+globalThis.fetch=async()=>({ok:true,json:async()=>structuredClone(snapshot)});
+const {api}=await import('./out/assets/api.mjs');
+for(const method of ['POST','PATCH','PUT','DELETE'])await assert.rejects(()=>api('/api/content_items',{method}));
+assert.equal((await api('/api/content_items')).items.length,3);
+assert.equal((await api('/api/content_items?idea_status=eq.active')).items.length,1);
+await assert.rejects(()=>api('/api/company/config.json'));
+const {eventsMarkup}=await import('./out/assets/events.mjs');
+const {contractsMarkup}=await import('./out/assets/contracts.mjs');
+assert.match(eventsMarkup(await api('/api/events')),/Event 2026/);
+assert.match(contractsMarkup(await api('/api/contracts')),/สัญญาห้าง/);
+for(const file of await fs.readdir(new URL('assets/',p))){if(file.endsWith('.mjs')){const r=spawnSync(process.execPath,['--check',decodeURIComponent(new URL('assets/'+file,p).pathname)]);assert.equal(r.status,0,file+': '+r.stderr);}}
+assert(!JSON.stringify(snapshot).match(/docs\.google\.com|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\/Users\//));
+console.log('Verified: write requests blocked, settings private, data filters, Event/contracts rendering, module syntax, sensitive links removed.');

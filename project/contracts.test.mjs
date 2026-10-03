@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {parseDate,bangkokToday,normalize,filterItems,csvContent,calendarContent} from './out/assets/contracts.mjs';
+const today=Date.UTC(2026,8,22);
+assert.equal(parseDate('22/9/2569'),today);assert.equal(parseDate('31/2/2026'),null);assert.equal(parseDate(''),null);
+assert.equal(bangkokToday(new Date('2026-09-21T18:00:00Z')),today);
+const d={items:[{branch:'=bad',starts_on:'1/1/2026',ends_on:'22/9/2026',renewed:false},{branch:'expired',ends_on:'21/9/2026',renewed:false},{branch:'renewed',ends_on:'21/9/2026',renewed:true},{branch:'missing',renewed:false},{branch:'future',ends_on:'22/12/2026',renewed:false}]};
+const rows=normalize(d,today);assert.equal(rows[0].days,0);assert.equal(rows[1].days,-1);assert.equal(rows[3].days,null);
+const s={query:'',filter:'urgent',window:'all',sort:'expiry'};assert.equal(filterItems(rows,s).length,2);assert.equal(filterItems(rows,{...s,filter:'overdue'}).length,1);assert.equal(filterItems(rows,{...s,window:'30'}).length,1);
+assert(csvContent(rows).includes("'=bad"));assert(calendarContent(rows[0]).includes('DTSTART;VALUE=DATE:20260922'));assert(calendarContent(rows[0]).includes('DTEND;VALUE=DATE:20260923'));assert.throws(()=>calendarContent(rows[3]));
+console.log('PASS: Thai/Buddhist dates, Bangkok midnight, unknown dates, overdue/renewed urgency, date windows, CSV formula safety, calendar dates');

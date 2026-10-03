@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {loadWarehouse,normalizeWarehouse} from './warehouse-data.mjs';
+import worker from './dist/server/index.js';
+const req=query=>new Request('https://warroom.test/api/warehouse?'+query);
+const env={BRANCH_STOCK_ACCOUNT_EMAIL:'test@example.test'};
+const log={id:'L1',branchId:'CDS01',branchName:'สาขาทดสอบ',sku:'VING-Test-Blue#40',product:{sku:'VING-Test-Blue#40',barcode:'0001',model:'Test',color:'Blue',size:'40'},type:'normal',qty:2,createdAt:'2026-09-23T00:00:00Z',createdBy:'private@example.test',idempotencyKey:'private',beforeJson:'private'};
+const initial={ok:true,page:2,pageSize:20,total:21,totalPages:2,summary:{normalQty:2,damagedQty:0,totalQty:2,skuCount:1},branches:[{id:'CDS01',name:'สาขาทดสอบ',email:'private@example.test'}],items:[log]};
+assert.doesNotMatch(JSON.stringify(normalizeWarehouse('initial',initial)),/private|createdBy|beforeJson|idempotency/);
+assert.throws(()=>normalizeWarehouse('initial',{...initial,items:[{...log,qty:null}]}));
+let urls=[];
+const response=await loadWarehouse(req('section=initial&page=2&month=2026-09&branchId=CDS01&type=normal&q=Test&url=https://bad.test'),env,async(url,opts)=>{urls.push(String(url));assert.equal(opts.redirect,'manual');if(String(url).endsWith('/api/auth/login'))return Response.json({user:{role:'admin',email:env.BRANCH_STOCK_ACCOUNT_EMAIL}});assert.equal(opts.headers['x-user-email'],env.BRANCH_STOCK_ACCOUNT_EMAIL);assert.equal(opts.method,'GET');assert.equal(url.origin,'https://ving-branch-stock.vercel.app');assert.equal(url.searchParams.get('page'),'2');assert.equal(url.searchParams.get('pageSize'),'20');assert.equal(url.searchParams.get('branchId'),'CDS01');assert.equal(url.searchParams.get('type'),'normal');assert.equal(url.searchParams.has('url'),false);return Response.json(initial);});assert.equal(response.status,200);assert.equal((await response.json()).total,21);
+for(const q of ['section=evil','section=initial&page=-1','section=initial&month=2026-99','section=initial&type=delete','section=returns&status=foo'])assert.equal((await loadWarehouse(req(q),env,()=>{throw Error('should not fetch');})).status,400);
+assert.equal((await loadWarehouse(req(''),{})).status,503);
+let reads=0;assert.equal((await loadWarehouse(req(''),env,async()=>{reads++;return Response.json({user:{email:env.BRANCH_STOCK_ACCOUNT_EMAIL,role:'pc'}});})).status,503);assert.equal(reads,1);
+const loginEnv={SESSION_SECRET:'test',VIEWER_PASSWORD:'viewer',ADMIN_PASSWORD:'admin'};assert.equal((await worker.fetch(req(''),loginEnv)).status,401);const login=await worker.fetch(new Request('https://warroom.test/login',{method:'POST',body:new URLSearchParams({password:'viewer'})}),loginEnv);const cookie=login.headers.get('set-cookie').split(';')[0];const page=await worker.fetch(new Request('https://warroom.test/warehouse',{headers:{cookie}}),loginEnv);assert.match(await page.text(),/summary data-nav="stock">Stock/);assert.equal((await worker.fetch(new Request('https://warroom.test/api/warehouse',{method:'POST',headers:{cookie}}),loginEnv)).status,403);
+console.log('Passed: warehouse allowlists, identity privacy, numeric schema, source auth/header, pagination/query validation, fixed read-only endpoints, login gate, viewer menu and write rejection.');

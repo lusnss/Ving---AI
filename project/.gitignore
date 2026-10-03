@@ -1,0 +1,8 @@
+.env
+.sync-secret
+.sync-state.json
+.event-catalog-cache.json
+sync.log
+dist/
+.sites-runtime/
+node_modules

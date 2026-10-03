@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@theme {
+  --color-brand-navy: #000000;
+  --color-brand-coral: #ef7023;
+  --color-brand-sand: #ffffff;
+  --color-brand-ivory: #ffffff;
+  --color-brand-navy-deep: #000000;
+  --color-brand-coral-dark: #ef7023;
+  --font-display: "Prompt", "Sukhumvit Set", "Sarabun", sans-serif;
+  --font-body: "Sarabun", "Sukhumvit Set", sans-serif;
+}

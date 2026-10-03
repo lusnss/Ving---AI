@@ -1,0 +1,9 @@
+#notification-center .mobile-push{border:1px solid #30303066;border-radius:10px;padding:14px;margin:14px 0;background:#ffffff04;color:#d3d3d3}
+#notification-center .mobile-push h3{font:600 16px/1.5 system-ui;margin:0 0 6px;color:#ffffff}
+#notification-center .mobile-push p,#notification-center .mobile-push li{font:400 14px/1.6 system-ui;margin:4px 0}
+#notification-center .mobile-push ol{padding-left:22px;margin:8px 0}
+#notification-center .mobile-push-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#notification-center .mobile-push button{font-size:14px;min-height:44px;padding:10px 14px}
+#notification-center .mobile-push button[data-push-action=enable]{background:#fde412;color:#202020;border-color:#fde412;font-weight:600}
+#notification-center .mobile-push-feedback{color:#fde412;margin-top:10px}
+#notification-center .mobile-push-feedback:empty{display:none}

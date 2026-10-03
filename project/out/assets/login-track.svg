@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c84939"/><stop offset=".52" stop-color="#b8392f"/><stop offset="1" stop-color="#8f2826"/></linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#000" stop-opacity=".08"/><stop offset="1" stop-color="#190000" stop-opacity=".42"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="11"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#ground)"/>
+  <path d="M-80 605L1680 890M-80 480L1680 765M-80 356L1680 642M-80 234L1680 520" fill="none" stroke="#f9d1a1" stroke-opacity=".8" stroke-width="5"/>
+  <path d="M-80 548L1680 833M-80 422L1680 707M-80 298L1680 584" fill="none" stroke="#75231f" stroke-opacity=".3" stroke-width="3"/>
+  <path d="M-60 0H1660V272L-60 550Z" fill="#d8644d" opacity=".55"/>
+  <g fill="none" stroke="#351211" stroke-linecap="round" stroke-linejoin="round" stroke-width="24" opacity=".88">
+    <g transform="translate(208 444) rotate(-9)"><circle cx="0" cy="-112" r="28" fill="#351211" stroke="none"/><path d="M-2-72L17 11M8-50L-62-6M8-45L71-2M17 7L-43 121M17 7L89 108"/></g>
+    <g transform="translate(390 496) rotate(-8) scale(.91)"><circle cx="0" cy="-112" r="28" fill="#351211" stroke="none"/><path d="M-2-72L17 11M8-50L-62-6M8-45L71-2M17 7L-43 121M17 7L89 108"/></g>
+    <g transform="translate(570 407) rotate(-4) scale(1.03)"><circle cx="0" cy="-112" r="28" fill="#351211" stroke="none"/><path d="M-2-72L17 11M8-50L-62-6M8-45L71-2M17 7L-43 121M17 7L89 108"/></g>
+    <g transform="translate(750 466) rotate(-8) scale(.94)"><circle cx="0" cy="-112" r="28" fill="#351211" stroke="none"/><path d="M-2-72L17 11M8-50L-62-6M8-45L71-2M17 7L-43 121M17 7L89 108"/></g>
+    <g transform="translate(920 360) rotate(-5) scale(1.1)"><circle cx="0" cy="-112" r="28" fill="#351211" stroke="none"/><path d="M-2-72L17 11M8-50L-62-6M8-45L71-2M17 7L-43 121M17 7L89 108"/></g>
+  </g>
+  <g fill="none" stroke="#f3f2ed" stroke-linecap="round" stroke-width="13" opacity=".95"><path d="M206 382l-46 45M394 434l-49 43M573 343l-49 43M754 404l-48 42M926 294l-50 46"/></g>
+  <path d="M0 755C410 642 790 674 1600 465V900H0Z" fill="url(#shade)"/>
+  <ellipse cx="560" cy="761" rx="375" ry="72" fill="#401112" opacity=".25" filter="url(#soft)"/>
+</svg>

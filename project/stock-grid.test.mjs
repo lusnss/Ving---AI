@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {buildStockGrid,stockGridIdentity,stockGridHTML,sortStockSizes} from './out/assets/stock-grid.mjs';
+const items=[{sku:'VING-TORANI-1.0-Black#40',normal:3,hold:1,total:4},{sku:'VING-TORANI-1.0-Black#41',normal:5,hold:0,total:5},{sku:'VING-TORANI-1.0-Black#40',normal:2,hold:1,total:3},{sku:'VING-VARI_B-Blue#40',normal:7,hold:2,total:9},{sku:'VING-VARI_BB-Blue#40',normal:1,hold:0,total:1}];
+assert.equal(stockGridIdentity(items[0]).section,'TORANI 1.0');assert.equal(stockGridIdentity(items[3]).grade,'grade_b');
+const grid=buildStockGrid(items,'normal',[{sku:'VING-TORANI-1.0-Black#42'}]);assert.deepEqual(grid[0].sections[0].sizes,['40','41','42']);assert.equal(grid[0].sections[0].rows[0].cells.get('40'),5);assert.equal(grid[0].sections[0].total,10);assert.equal(grid.length,3);
+for(const metric of ['normal','hold','total'])assert.equal(buildStockGrid(items,metric).reduce((a,g)=>a+g.total,0),items.reduce((a,s)=>a+s[metric],0));
+assert.deepEqual(buildStockGrid([]),[]);assert.match(stockGridHTML([]),/ไม่พบสต็อก/);assert.doesNotMatch(stockGridHTML([{sku:'VING-<script>-x#40',normal:1}]),/<script>/);
+assert.deepEqual(sortStockSizes(['41','39','40','N/A']),['39','40','41','N/A']);
+assert.equal(buildStockGrid([{sku:'VING-Test-Black#40',normal:-1}])[0].total,-1);
+console.log('Passed: TORANI model, grade separation, catalog sizes, duplicate aggregation, all quantity modes, negative stock, empty state and HTML escaping.');

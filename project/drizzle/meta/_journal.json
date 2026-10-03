@@ -1,0 +1,104 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1789912724039,
+      "tag": "0000_panoramic_zarek",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789915486809,
+      "tag": "0001_slippery_gamma_corps",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789916496210,
+      "tag": "0002_normal_rocket_racer",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1790043233236,
+      "tag": "0003_exotic_gwen_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1790047800000,
+      "tag": "0004_october_event_proposals",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1790142287854,
+      "tag": "0005_inventory_snapshots",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1790143598320,
+      "tag": "0006_orange_blue_shield",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1790224769569,
+      "tag": "0007_foamy_leo",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1790236354806,
+      "tag": "0008_closed_adam_warlock",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1790300786788,
+      "tag": "0009_secret_venom",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1790362349262,
+      "tag": "0010_eminent_blazing_skull",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1790366590172,
+      "tag": "0011_summary_event_deletions",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1790708697849,
+      "tag": "0012_silly_jane_foster",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1790943441171,
+      "tag": "0013_fair_miek",
+      "breakpoints": true
+    }
+  ]
+}
